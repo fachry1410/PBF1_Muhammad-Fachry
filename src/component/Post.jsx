@@ -1,17 +1,24 @@
 import React from "react";
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+
 
 const Post = (props) => {
-    return(
-        <div className="artikel">
-        <div className="gambar-artikel">
-            <img src="http://placeimg.com/120/120/any" alt="Gambar Thubnail Arikel"/>
-        </div>
-        <div className="konten-artikel">
-            <div className="judul-artikel">{props.judul}</div>
-            <p className="isi-artikel">{props.isi}</p>
-            <button className="btn btn-sm btn-warning" onClick = {() => props.hapusArtikel(props.idArtikel)}>Hapus</button>
-        </div>
-    </div>
+    return (
+        <Card className="mahasiswa">
+            <Card.Img variant="top" src="http://placeimg.com/120/120/any" />
+            <Card.Body>
+                <Card.Title>{props.nama}</Card.Title>
+            </Card.Body>
+            <ListGroup >
+                <ListGroupItem>NIM      : {props.nim}</ListGroupItem>
+                <ListGroupItem>ALAMAT   : {props.alamat}</ListGroupItem>
+                <ListGroupItem>HP       : {props.hp}</ListGroupItem>
+                <ListGroupItem>ANGKATAN : {props.angkatan}</ListGroupItem>
+                <ListGroupItem>STATUS   : {props.status}</ListGroupItem>
+
+            </ListGroup>
+            <button className="btn btn-sm btn-warning" onClick={() => props.hapusMahasiswa(props.idMahasiswa)}>Hapus</button>
+        </Card>
     )
 }
 

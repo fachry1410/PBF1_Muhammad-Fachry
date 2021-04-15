@@ -1,80 +1,110 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import './BlogPost.css';
 import Post from "../../component/Post";
 import API from "../../Services/index";
 
-class BlogPost extends Component{
+class BlogPost extends Component {
     state = {
-        listArtikel: [],
-        insertArtikel:{
-            userId: 1,
-            id:1,
-            title: "",
-            body: ""
+        listMahasiswa: [],
+        insertMahasiswa: {
+            id: 1,
+            nim: "",
+            nama: "",
+            alamat: "",
+            hp: "",
+            angkatan: "",
+            status: ""
         }
     }
 
     ambilDataDariServerAPI = () => {
         API.getNewsBlog().then(result => {
             this.setState({
-                listArtikel: result
+                listMahasiswa: result
             })
         })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.ambilDataDariServerAPI()
     }
 
-    handleHapusArtikel = (data) => {
+    handleHapusMahasiswa = (data) => {
         API.deleteNewsBlog(data)
-        .then(result => {
-            this.ambilDataDariServerAPI();
-        })
+            .then(result => {
+                this.ambilDataDariServerAPI();
+            })
     }
 
-    handleTambahArtikel= (event) =>{
-        let formInsertArtikel = {...this.state.insertArtikel};
+    handleTambahMahasiswa = (event) => {
+        let formInsertMahasiswa = { ...this.state.insertMahasiswa };
         let timestamp = new Date().getTime();
-        formInsertArtikel['id'] = timestamp;
-        formInsertArtikel[event.target.name] = event.target.value;
+        formInsertMahasiswa['id'] = timestamp;
+        formInsertMahasiswa[event.target.name] = event.target.value;
         this.setState({
-            insertArtikel: formInsertArtikel
+            insertMahasiswa: formInsertMahasiswa
         });
     }
 
     handleTombolSimpan = () => {
-       API.postNewsBlog(this.state.insertArtikel).then((response) => {
+        API.postNewsBlog(this.state.insertMahasiswa).then((response) => {
             this.ambilDataDariServerAPI();
         })
     }
 
-    render(){
-        return(
-            <div className="post-artikel">
+    render() {
+        return (
+            <div className="post-mahasiswa">
                 <div className="form pb-2 border-bottom">
-                    <div className="form-grup row">
-                        <label htmlFor= "title" className="col-sm-2 col-form-label">Judul</label>
+                    <div className="form-group row">
+                        <label htmlFor="nim" className="col-sm-2 col-form-label">NIM</label>
                         <div className="col-sm-10">
-                            <input type="text" className = "form-control" id = "title" name = "title" onChange={this.handleTambahArtikel}/>
+                            <input type="text" className="form-control" id="nim" name="nim" onChange={this.handleTambahMahasiswa} />
                         </div>
                     </div>
-                    <div className="form-grup row">
-                        <label htmlFor= "body" className="col-sm-2 col-form-label">Isi</label>
+                    <div className="form-group row">
+                        <label htmlFor="nama" className="col-sm-2 col-form-label">NAMA</label>
                         <div className="col-sm-10">
-                           <textarea ClassName="formControl" id="body" name="body" rows="3" onChange={this.handleTambahArtikel}></textarea>
+                            <input type="text" className="form-control" id="nama" name="nama" onChange={this.handleTambahMahasiswa} />
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.handleTombolSimpan}>Simpan</button>
+                    <div className="form-group row">
+                        <label htmlFor="alamat" className="col-sm-2 col-form-label">ALAMAT</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="alamat" name="alamat" onChange={this.handleTambahMahasiswa} />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="hp" className="col-sm-2 col-form-label">HP</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="hp" name="hp" onChange={this.handleTambahMahasiswa} />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="angkatan" className="col-sm-2 col-form-label">ANGKATAN</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="angkatan" name="angkatan" onChange={this.handleTambahMahasiswa} />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="status" className="col-sm-2 col-form-label">STATUS</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="status" name="status" onChange={this.handleTambahMahasiswa} />
+                        </div>
+                    </div>
+                    <button type="submit" className="btn btn-primary" onClick={this.handleTombolSimpan}>SIMPAN</button>
                 </div>
-                <h2>Daftar Artikel</h2>
+                <h2>DAFTAR MAHASISWA</h2>
+                <div className="row">
                 {
-                    this.state.listArtikel.map(artikel =>{
-                        return <Post key={artikel.id} judul={artikel.title} isi={artikel.body} idArtikel={artikel.id} hapusArtikel={this.handleHapusArtikel}/>
+                    this.state.listMahasiswa.map(mahasiswa => {
+                        return <Post key={mahasiswa.id} nim={mahasiswa.nim} nama={mahasiswa.nama} alamat={mahasiswa.alamat} hp={mahasiswa.hp} angkatan={mahasiswa.angkatan} status={mahasiswa.status} idMahasiswa={mahasiswa.id} hapusMahasiswa={this.handleHapusMahasiswa}/>
                     })
                 }
+                </div>
+                
+
             </div>
-            
         )
     }
 }

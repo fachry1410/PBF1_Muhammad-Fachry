@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": 1618501244585,
+      "nim": "1841720012",
+      "nama": "RIZKY",
+      "alamat": "SEMANGGI TIMUR",
+      "hp": "0833987394793",
+      "angkatan": "2017",
+      "status": "PUTUS STUDI"
+    },
+    {
+      "id": 1618501261485,
+      "nim": "1841720012",
+      "nama": "RIZKY",
+      "alamat": "SEMANGGI TIMUR",
+      "hp": "0833987394793",
+      "angkatan": "2017",
+      "status": "LULUS"
+    },
+    {
+      "id": 1618501278537,
+      "nim": "1841720012",
+      "nama": "FACHRY",
+      "alamat": "SEMANGGI TIMUR",
+      "hp": "0833987394793",
+      "angkatan": "2017",
+      "status": "CUTI"
+    },
+    {
+      "id": 1618501304510,
+      "nim": "1841720012",
+      "nama": "FACHRY",
+      "alamat": "SEMANGGI TIMUR",
+      "hp": "0833987394793",
+      "angkatan": "2017",
+      "status": "ABSEN"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
